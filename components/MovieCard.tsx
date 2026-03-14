@@ -1,4 +1,4 @@
-import {View, Text} from 'react-native'
+import {View,Text} form 'react-native'
 import React from 'react'
 
 const MovieCard = () => {
