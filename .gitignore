@@ -5,6 +5,8 @@ node_modules/
 
 # Cursor / Editor
 .cursor/
+.vscode/ 
+.cph/
 
 # Expo
 .expo/
