@@ -6,6 +6,8 @@ import SearchBar from "@/components/SearchBar";
 import { useRouter } from "expo-router";
 import useFetch from "@/services/useFetch";
 import { fetchMovies } from "@/services/api";
+import MovieCard from "@/components/MovieCard";
+
 
 
 export default function Index() {
@@ -66,6 +68,7 @@ export default function Index() {
 								data={movies}
 								renderItem={ ({item}) => (
 									<MovieCard
+										{ ... item}
 										
 									/>
 								)}
