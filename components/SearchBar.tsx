@@ -1,16 +1,21 @@
-import {Image,View, Text, TextInput} from 'react-native'
+import {Image, View, TextInput, TouchableOpacity} from 'react-native'
 import React from 'react'
 import { icons } from '@/constants/icons'
 
 interface Props{
 	placeholder: string;
 	onPress?: () => void;
+	value?: string;
+	onChangeText?: (text: string) => void;
+	onSubmitEditing?: () => void;
+	editable?: boolean;
 }
 
 const SearchBar = ({
-	placeholder, onPress
+	placeholder, onPress, value, onChangeText, onSubmitEditing, editable = true
 }: Props) => {
-	return(
+	const isSearchMode = onChangeText !== undefined;
+	const content = (
 		<View className="flex-row items-center bg-dark-200 rounded-full px-5 py-4">
 			<Image 
 				source={icons.search}
@@ -19,15 +24,23 @@ const SearchBar = ({
 				tintColor="#ad8bff"
 			/>
 			<TextInput 
-				onPress={onPress}
 				placeholder={placeholder}
-				value=""
-				onChange={()=>{}}
+				value={isSearchMode ? value : ""}
+				onChangeText={onChangeText}
+				onSubmitEditing={onSubmitEditing}
+				editable={isSearchMode && editable}
 				placeholderTextColor="#a8b5db"
 				className="flex-1 ml-2 text-white"
 			/>
 		</View>
-	)
+	);
+	return isSearchMode ? (
+		content
+	) : (
+		<TouchableOpacity onPress={onPress} activeOpacity={0.8}>
+			{content}
+		</TouchableOpacity>
+	);
 }
 
 export default SearchBar
